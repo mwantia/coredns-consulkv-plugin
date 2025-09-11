@@ -27,7 +27,7 @@ func (plug *ConsulKVPlugin) HandleRecord(ctx context.Context, msg *dns.Msg, qnam
 
 		switch rec.Type {
 		case "CNAME":
-			if qtype == dns.TypeCNAME || qtype == dns.TypeA || qtype == dns.TypeAAAA || (qtype == dns.TypeHTTPS && !foundRequestedType) {
+			if qtype == dns.TypeCNAME || qtype == dns.TypeA || qtype == dns.TypeAAAA || qtype == dns.TypeTXT || (qtype == dns.TypeHTTPS && !foundRequestedType) {
 				foundRequestedType = plug.AppendCNAMERecords(ctx, msg, qname, qtype, ttl, rec.Value)
 			}
 
